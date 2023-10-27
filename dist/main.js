@@ -1,24 +1,27 @@
 "use strict";
-class Bands {
-    constructor() {
-        this.dataState = [];
+const todaysTransactions = {
+    Pizza: -10,
+    Books: -5,
+    Job: 50
+};
+console.log(todaysTransactions.Pizza);
+console.log(todaysTransactions['Pizza']);
+let prop = 'Pizza';
+const todaysNet = (transactions) => {
+    let total = 0;
+    for (const transaction in transactions) {
+        total += transactions[transaction];
     }
-    get data() {
-        return this.dataState;
-    }
-    set data(value) {
-        if (Array.isArray(value) && value.every(el => typeof el === 'string')) {
-            this.dataState = value;
-            return;
-        }
-        else
-            throw new Error('Param is not an array of strings');
-    }
+    return total;
+};
+console.log(todaysNet(todaysTransactions));
+console.log(todaysTransactions['Dave']);
+const student = {
+    name: "Doug",
+    GPA: 3.5,
+    classes: [100, 200]
+};
+for (const key in student) {
+    console.log(`${key}: ${student[key]}`);
 }
-const MyBands = new Bands();
-MyBands.data = ['Neil Young', 'Led Zep'];
-console.log(MyBands.data);
-MyBands.data = [...MyBands.data, 'ZZ Top'];
-console.log(MyBands.data);
-MyBands.data = ['Van Halen', 5150];
 //# sourceMappingURL=main.js.map
