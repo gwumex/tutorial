@@ -1,22 +1,24 @@
 "use strict";
-class Coder {
-    constructor(name, music, age, lang = "Typescript") {
-        this.name = name;
-        this.music = music;
-        this.age = age;
-        this.lang = lang;
-        this.name = name;
-        this.age = age;
-        this.lang = lang;
-        this.music = music;
+class Bands {
+    constructor() {
+        this.dataState = [];
     }
-    getAge() {
-        return `Hello, I'm ${this.age}`;
+    get data() {
+        return this.dataState;
+    }
+    set data(value) {
+        if (Array.isArray(value) && value.every(el => typeof el === 'string')) {
+            this.dataState = value;
+            return;
+        }
+        else
+            throw new Error('Param is not an array of strings');
     }
 }
-const Dave = new Coder('Dave', 'Rock', 42);
-console.log(Dave.getAge());
-console.log(Dave.music);
-console.log(Dave.age);
-console.log(Dave.lang);
+const MyBands = new Bands();
+MyBands.data = ['Neil Young', 'Led Zep'];
+console.log(MyBands.data);
+MyBands.data = [...MyBands.data, 'ZZ Top'];
+console.log(MyBands.data);
+MyBands.data = ['Van Halen', 5150];
 //# sourceMappingURL=main.js.map
