@@ -409,4 +409,39 @@ const finalGrades: Record <Students, LetterGrades> = {
     kelly: "U"
 }
 
+// Pick and Omit
+type AssignResult = Pick<Assignment, "studentId" | "grade">
+
+type AssignPreview = Omit<Assignment, "grade" | "verified">
+
+// extract and extract
+type adjustableGrade = Exclude<LetterGrades, "U">
+
+type highGrades = Extract< LetterGrades, "A" | "B">
+
+// nonnullable
+
+type allPossibleGrades = "Dave" | "John" | null | undefined
+
+type NamesOnly = NonNullable<allPossibleGrades>
+
+
+// Return type
+
+// type newAssign = {title: string, points: number}
+
+const createNewAssign = (title: string, points: number) => {
+    return {title, points}
+}
+
+type newAssign =  ReturnType<typeof createNewAssign>
+
+
+const tsAssign: newAssign = createNewAssign("Utility Types", 100)
+console.log(tsAssign);
+
+// Parameters 
+type assignParams = Parameters<typeof createNewAssign>
+
+const assignArgs: assignParams = ["Generics", 100]
 
